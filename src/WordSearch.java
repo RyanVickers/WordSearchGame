@@ -111,6 +111,12 @@ public class WordSearch {
         }
 
     }
+    public void getWordString(){
+        System.out.printf("The words to find:%n");
+        for(int x=0;x<words.length;x++){
+            System.out.printf("%s%n",words[x]);
+        }
+    }
 
 
         }
