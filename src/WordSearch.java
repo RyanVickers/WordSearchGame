@@ -18,15 +18,13 @@ public class WordSearch {
     public int getValidInput(String x) {
         Scanner key = new Scanner(System.in);
         int input = 0;
-        int counter = 0;
         while (input < 2 || input > 15) {
-            if (counter >= 1) {
-                System.out.printf("Must be between (2-15)%n");
-            }
             System.out.printf("Enter the number of %s (2-15):", x);
-            counter++;
             try {
                 input = key.nextInt();
+                if(input < 2 || input > 15){
+                    System.out.printf("Must be between (2-15)%n");
+                }
             } catch (Exception e) {
                 System.out.printf("Only integers are allowed%n");
                 key.nextLine();  //clear the buffer
@@ -39,15 +37,18 @@ public class WordSearch {
     public String wordCheck(int length) {
         Scanner key1 = new Scanner(System.in);
         String word = "";
-        int counter = 0;
         while (word.length() < 2 || word.length() > length) {
-            if (counter >= 1) {
-                System.out.printf("Words must be less than %d characters%n", length);
-            }
             System.out.printf("Enter a word with less than %d characters", length);
-            counter++;
             try {
                 word = key1.next();
+                if(word.length() < 2||word.length()>length){
+                    System.out.printf("Words must be less than %d characters%n", length);
+                }
+                if(word.matches(".*\\d.*")){
+                    System.out.printf("No Spaces or Numbers%n");
+                    key1.nextLine();  //clear the buffer
+                    word = "";
+                }
             } catch (Exception e) {
                 System.out.printf("Only letters allowed%n");
                 key1.nextLine();  //clear the buffer
