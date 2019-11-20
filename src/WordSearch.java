@@ -1,4 +1,9 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class WordSearch {
@@ -22,7 +27,7 @@ public class WordSearch {
             System.out.printf("Enter the number of %s (2-15):", x);
             try {
                 input = key.nextInt();
-                if(input < 2 || input > 15){
+                if (input < 2 || input > 15) {
                     System.out.printf("Must be between (2-15)%n");
                 }
             } catch (Exception e) {
@@ -39,15 +44,15 @@ public class WordSearch {
         String word = "";
         while (word.length() < 2 || word.length() > length) {
             System.out.printf("Enter a word with less than %d characters", length);
-                word = key1.next();
-                if(word.length() < 2||word.length()>length){
-                    System.out.printf("Words must be less than %d characters%n", length);
-                }
-                if(word.matches(".*\\d.*")){
-                    System.out.printf("No Spaces or Numbers%n");
-                    key1.nextLine();  //clear the buffer
-                    word = "";
-                }
+            word = key1.next();
+            if (word.length() < 2 || word.length() > length) {
+                System.out.printf("Words must be less than %d characters%n", length);
+            }
+            if (word.matches(".*\\d.*")) {
+                System.out.printf("No Spaces or Numbers%n");
+                key1.nextLine();  //clear the buffer
+                word = "";
+            }
         }
         return word.trim().toUpperCase();
     }
@@ -70,10 +75,10 @@ public class WordSearch {
         }
     }
 
-    public void displayBoard() {
+    public void getWordSearchString() {
         wordFill();
         fillBoard();
-        Board();
+        board();
         for (int row = 0; row < gameBoard.length; row++) {
             for (int col = 0; col < gameBoard[row].length; col++) {
                 System.out.printf("%5c ", gameBoard[row][col]);
@@ -81,39 +86,46 @@ public class WordSearch {
             System.out.println();
         }
     }
-
     public void wordFill() {
         for (int x = 0; x < words.length; x++) {
             words[x] = wordCheck(col);
         }
     }
 
-    public int rand(String word) {
-        SecureRandom rng = new SecureRandom();
-        int rand = rng.nextInt(col - word.length());
-        return rand;
-    }
-
-    public void Board() {
+    public void board() {
         SecureRandom rng = new SecureRandom();
 
         for (int row = 0; row < words.length; row++) {
-            int rand = rng.nextInt(col - words[row].length()+1);
+            int rand = rng.nextInt(col - words[row].length() + 1);
             for (int col = 0; col < words[row].length(); col++) {
-                gameBoard[row][col+rand] = words[row].charAt(col);
+                gameBoard[row][col + rand] = words[row].charAt(col);
             }
         }
-
     }
-    public void getWordString(){
+
+    public void getWordString() {
         System.out.printf("The words to find:%n");
-        for(int x=0;x<words.length;x++){
-            System.out.printf("%s%n",words[x]);
+        for (int x = 0; x < words.length; x++) {
+            System.out.printf("%s%n", words[x]);
         }
     }
 
-
+    public void usingPrintWriter() throws IOException {
+        FileWriter fileWriter = new FileWriter("puzzle.txt");
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        for (int row = 0; row < gameBoard.length; row++) {
+            for (int col = 0; col < gameBoard[row].length; col++)
+                printWriter.printf("%5c ", gameBoard[row][col]);
+            printWriter.println();
         }
+        printWriter.printf("The words to find:%n");
+        for (int x = 0; x < words.length; x++) {
+            printWriter.printf("%s%n", words[x]);
+        }
+            printWriter.close();
+
+    }
+}
 
 
 
