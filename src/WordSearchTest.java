@@ -3,5 +3,6 @@ public class WordSearchTest {
         WordSearch game=new WordSearch();
         game.displayBoard();
         game.getWordString();
+
     }
 }

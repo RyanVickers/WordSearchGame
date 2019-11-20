@@ -39,7 +39,6 @@ public class WordSearch {
         String word = "";
         while (word.length() < 2 || word.length() > length) {
             System.out.printf("Enter a word with less than %d characters", length);
-            try {
                 word = key1.next();
                 if(word.length() < 2||word.length()>length){
                     System.out.printf("Words must be less than %d characters%n", length);
@@ -49,11 +48,6 @@ public class WordSearch {
                     key1.nextLine();  //clear the buffer
                     word = "";
                 }
-            } catch (Exception e) {
-                System.out.printf("Only letters allowed%n");
-                key1.nextLine();  //clear the buffer
-                word = "";
-            }
         }
         return word.trim().toUpperCase();
     }
@@ -94,20 +88,19 @@ public class WordSearch {
         }
     }
 
-    public void rand() {
-        int bound = 0;
-        for (int x = 0; x < words.length; x++) {
-            bound = words[x].length();
-        }
+    public int rand(String word) {
         SecureRandom rng = new SecureRandom();
-        int rand = rng.nextInt(col - bound);
-        System.out.print(rand);
+        int rand = rng.nextInt(col - word.length());
+        return rand;
     }
 
     public void Board() {
+        SecureRandom rng = new SecureRandom();
+
         for (int row = 0; row < words.length; row++) {
+            int rand = rng.nextInt(col - words[row].length()+1);
             for (int col = 0; col < words[row].length(); col++) {
-                gameBoard[row][col] = words[row].charAt(col);
+                gameBoard[row][col+rand] = words[row].charAt(col);
             }
         }
 
