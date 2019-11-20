@@ -92,15 +92,28 @@ public class WordSearch {
             words[x] = wordCheck(col);
         }
     }
+
+    public void rand() {
+        int bound = 0;
+        for (int x = 0; x < words.length; x++) {
+            bound = words[x].length();
+        }
+        SecureRandom rng = new SecureRandom();
+        int rand = rng.nextInt(col - bound);
+        System.out.print(rand);
+    }
+
     public void Board() {
         for (int row = 0; row < words.length; row++) {
             for (int col = 0; col < words[row].length(); col++) {
                 gameBoard[row][col] = words[row].charAt(col);
-
             }
         }
+
     }
-    }
+
+
+        }
 
 
 
