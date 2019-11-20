@@ -35,6 +35,7 @@ public class WordSearch {
         }
         return input;
     }
+
     public String wordCheck(int length) {
         Scanner key1 = new Scanner(System.in);
         String word = "";
@@ -53,7 +54,7 @@ public class WordSearch {
                 word = "";
             }
         }
-        return word;
+        return word.trim().toUpperCase();
     }
 
     public char letters() {
@@ -77,6 +78,7 @@ public class WordSearch {
     public void displayBoard() {
         wordFill();
         fillBoard();
+        Board();
         for (int row = 0; row < gameBoard.length; row++) {
             for (int col = 0; col < gameBoard[row].length; col++) {
                 System.out.printf("%5c ", gameBoard[row][col]);
@@ -84,10 +86,21 @@ public class WordSearch {
             System.out.println();
         }
     }
-    public void wordFill(){
-        for(int x=0;x<words.length;x++){
-            words[x]=wordCheck(col);
+
+    public void wordFill() {
+        for (int x = 0; x < words.length; x++) {
+            words[x] = wordCheck(col);
         }
     }
-}
+    public void Board() {
+        for (int row = 0; row < words.length; row++) {
+            for (int col = 0; col < words[row].length(); col++) {
+                gameBoard[row][col] = words[row].charAt(col);
+
+            }
+        }
+    }
+    }
+
+
 
