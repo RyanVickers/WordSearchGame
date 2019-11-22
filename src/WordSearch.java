@@ -48,10 +48,10 @@ public class WordSearch {
     public String wordCheck(int length) {
         Scanner key1 = new Scanner(System.in);
         String word = "";
-        while (word.length() < 2 || word.length() > length-1) {
+        while (word.length() < 2 || word.length() > length) {
             System.out.printf("Enter a word with less than %d characters", length);
             word = key1.next();
-            if (word.length() < 2 || word.length() > length-1) {
+            if (word.length() < 2 || word.length() > length) {
                 System.out.printf("Words must be less than %d characters%n", length);
             }
             if (word.matches(".*\\d.*")) {
