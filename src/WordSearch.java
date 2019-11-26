@@ -10,6 +10,9 @@ public class WordSearch {
     private int row = getValidInput("rows");
     private int col = getValidInput("columns");
 
+    /**
+     * Initialization of word search
+     */
     public WordSearch() {
         words = new String[row];
         gameBoard = new char[row][col];
@@ -23,18 +26,18 @@ public class WordSearch {
      * Used to validate column and row length.
      * also checks for invalid inputs letters,symbols.
      */
-    public int getValidInput(String x) {
+    public int getValidInput(String side) {
         Scanner key = new Scanner(System.in);
         int input = 0;
         while (input < 2 || input > 15) {
-            System.out.printf("Enter the number of %s (2-15):", x);
+            System.out.printf("Enter the number of %s (2-15):", side);
             try {
                 input = key.nextInt();
-                if (input < 2 || input > 15) {
+                if (input < 2 || input > 15) {//checks if number between 2 and 15.
                     System.out.printf("Must be between (2-15)%n");
                 }
             } catch (Exception e) {
-                System.out.printf("Only integers are allowed%n");
+                System.out.printf("Only integers are allowed%n");//checks for letters and decimals.
                 key.nextLine();  //clear the buffer
                 input = 0;
             }
@@ -51,17 +54,17 @@ public class WordSearch {
         String word = "";
         while (word.length() < 2 || word.length() > length) {
             System.out.printf("Enter a word with less than %d characters%n", length);
-            word = key1.nextLine().trim();
-            if (word.length() < 2 || word.length() > length) {
+            word = key1.nextLine().trim();//trims word of spaces
+            if (word.length() < 2 || word.length() > length) {//check if word is between 2 and the column length.
                 System.out.printf("Words must be less than %d characters%n", length);
             }
-            if (word.matches(".*\\d.*") || word.contains(" ")) {
+            if (word.matches(".*\\d.*") || word.contains(" ")) {//checks for spaces between words or numbers.
                 System.out.printf("No Spaces or Numbers%n");
                 word = "";
             }
 
         }
-        return word.toUpperCase();
+        return word.toUpperCase();//returns uppercase word.
     }
 
     /**
@@ -85,7 +88,7 @@ public class WordSearch {
     public void fillBoard() {
         for (int row = 0; row < gameBoard.length; row++) {
             for (int col = 0; col < gameBoard[row].length; col++) {
-                gameBoard[row][col] = letters();
+                gameBoard[row][col] = letters();//calls letter method
             }
         }
     }
@@ -95,9 +98,9 @@ public class WordSearch {
      * calling on wordFill, fillBoard, randomColumn methods.
      */
     public void getWordSearchString() {
-        wordFill();
-        fillBoard();
-        randomColumn();
+        wordFill();//calls wordFill method.
+        fillBoard();//calls fillBoard method.
+        randomColumn();//calls randomColumn method.
         for (int row = 0; row < gameBoard.length; row++) {
             for (int col = 0; col < gameBoard[row].length; col++) {
                 System.out.printf("%5c ", gameBoard[row][col]);
@@ -132,7 +135,7 @@ public class WordSearch {
     }
 
     /**
-     * Method outputs each word to the console.
+     * Method outputs each word as a list to the console.
      */
     public void getWordString() {
         System.out.printf("The words to find:%n");
