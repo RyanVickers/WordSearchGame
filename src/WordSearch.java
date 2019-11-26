@@ -17,6 +17,7 @@ public class WordSearch {
             for (col = 0; col < gameBoard[row].length; col++)
                 gameBoard[row][col] = ' ';
     }
+
     /**
      * This method receives a input from the scanner and validates it is between (2-15).
      * Used to validate column and row length.
@@ -50,21 +51,21 @@ public class WordSearch {
         String word = "";
         while (word.length() < 2 || word.length() > length) {
             System.out.printf("Enter a word with less than %d characters%n", length);
-            word = key1.nextLine();
+            word = key1.nextLine().trim();
             if (word.length() < 2 || word.length() > length) {
                 System.out.printf("Words must be less than %d characters%n", length);
             }
-            if (word.matches(".*\\d.*")||word.contains(" ")) {
+            if (word.matches(".*\\d.*") || word.contains(" ")) {
                 System.out.printf("No Spaces or Numbers%n");
                 word = "";
             }
 
         }
-        return word.trim().toUpperCase();
+        return word.toUpperCase();
     }
 
     /**
-     *This method randomly generates a character of the alphabet
+     * This method randomly generates a character of the alphabet
      * using secure random.
      */
     public char letters() {
@@ -142,6 +143,7 @@ public class WordSearch {
 
     /**
      * Method prints output to a puzzle.txt document.
+     *
      * @throws IOException
      */
     public void usingPrintWriter() throws IOException {
@@ -156,7 +158,7 @@ public class WordSearch {
         for (int x = 0; x < words.length; x++) {
             printWriter.printf("%s%n", words[x]);
         }
-            printWriter.close();
+        printWriter.close();
 
     }
 }
