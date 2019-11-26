@@ -49,16 +49,16 @@ public class WordSearch {
         Scanner key1 = new Scanner(System.in);
         String word = "";
         while (word.length() < 2 || word.length() > length) {
-            System.out.printf("Enter a word with less than %d characters", length);
-            word = key1.next();
+            System.out.printf("Enter a word with less than %d characters%n", length);
+            word = key1.nextLine();
             if (word.length() < 2 || word.length() > length) {
                 System.out.printf("Words must be less than %d characters%n", length);
             }
-            if (word.matches(".*\\d.*")) {
+            if (word.matches(".*\\d.*")||word.contains(" ")) {
                 System.out.printf("No Spaces or Numbers%n");
-                key1.nextLine();  //clear the buffer
                 word = "";
             }
+
         }
         return word.trim().toUpperCase();
     }
