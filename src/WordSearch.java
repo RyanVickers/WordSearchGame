@@ -19,6 +19,9 @@ public class WordSearch {
         for (row = 0; row < gameBoard.length; row++)
             for (col = 0; col < gameBoard[row].length; col++)
                 gameBoard[row][col] = ' ';
+        wordFill();//calls wordFill method.
+        fillBoard();//calls fillBoard method.
+        randomColumn();//calls randomColumn method.
     }
 
     /**
@@ -74,10 +77,8 @@ public class WordSearch {
     public char letters() {
         char c = 0;
         SecureRandom rng = new SecureRandom();
-        for (int i = 0; i < 91; i++) {
-            int rand = rng.nextInt(91 - 65) + 65;
-            c = (char) rand;
-        }
+        int rand = rng.nextInt(91 - 65) + 65;
+        c = (char) rand;
         return c;
     }
 
@@ -95,12 +96,8 @@ public class WordSearch {
 
     /**
      * Method prints gameboard to the console.
-     * calling on wordFill, fillBoard, randomColumn methods.
      */
     public void getWordSearchString() {
-        wordFill();//calls wordFill method.
-        fillBoard();//calls fillBoard method.
-        randomColumn();//calls randomColumn method.
         for (int row = 0; row < gameBoard.length; row++) {
             for (int col = 0; col < gameBoard[row].length; col++) {
                 System.out.printf("%5c ", gameBoard[row][col]);
