@@ -7,13 +7,14 @@ import java.util.Scanner;
 public class WordSearch {
     private char[][] gameBoard;
     private String[] words;
-    private int row = getValidInput("rows");
+
     private int col = getValidInput("columns");
 
     /**
      * Initialization of word search
      */
     public WordSearch() {
+         int row = getValidInput("rows");
         words = new String[row];
         gameBoard = new char[row][col];
         for (row = 0; row < gameBoard.length; row++)
