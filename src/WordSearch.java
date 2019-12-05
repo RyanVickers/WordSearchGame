@@ -7,14 +7,13 @@ import java.util.Scanner;
 public class WordSearch {
     private char[][] gameBoard;
     private String[] words;
-
     private int col = getValidInput("columns");
 
     /**
      * Initialization of word search
      */
     public WordSearch() {
-         int row = getValidInput("rows");
+        int row = getValidInput("rows");
         words = new String[row];
         gameBoard = new char[row][col];
         for (row = 0; row < gameBoard.length; row++)
@@ -78,8 +77,8 @@ public class WordSearch {
     public char letters() {
         char c = 0;
         SecureRandom rng = new SecureRandom();
-            int rand = rng.nextInt(91 - 65) + 65;
-            c = (char) rand;
+        int rand = rng.nextInt(91 - 65) + 65;
+        c = (char) rand;
         return c;
     }
 
@@ -94,6 +93,7 @@ public class WordSearch {
             }
         }
     }
+
     /**
      * Method prints gameboard to the console.
      */
@@ -105,6 +105,7 @@ public class WordSearch {
             System.out.println();
         }
     }
+
     /**
      * Method stores words entered using wordCheck method into array
      * to store String.
@@ -120,15 +121,15 @@ public class WordSearch {
      * also inserts words into columns in a random starting position.
      */
     public void randomColumn() {
-            SecureRandom rng = new SecureRandom();
+        SecureRandom rng = new SecureRandom();
 
-            for (int row = 0; row < words.length; row++) {
-                int rand = rng.nextInt(col - words[row].length() + 1);
-                for (int col = 0; col < words[row].length(); col++) {
-                    gameBoard[row][col + rand] = words[row].charAt(col);
-                }
+        for (int row = 0; row < words.length; row++) {
+            int rand = rng.nextInt(col - words[row].length() + 1);
+            for (int col = 0; col < words[row].length(); col++) {
+                gameBoard[row][col + rand] = words[row].charAt(col);
             }
         }
+    }
 
     /**
      * Method outputs each word as a list to the console.
